@@ -1,0 +1,27 @@
+---
+# tasks file for php
+ - name: add remi repository
+   yum: name=http://rpms.famillecollet.com/enterprise/remi-release-7.rpm state=present
+
+ - name: add epel repository
+   yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm state=present
+
+ - name: install php70 packages
+   yum: name={{ item }} enablerepo=epel,remi,remi-php70 state=installed
+   with_items:
+     - php70
+     - php70-php-mcrypt
+     - php70-php-mbstring
+     - php70-php-fpm
+     - php70-php-gd
+     - php70-php-xml
+     - php70-php-pdo
+
+#     - php-cli
+#     - php-devel
+#     - php-mbstring
+#     - php-gd
+#     - php-pear
+#     - php-xml
+#     - php-fpm
+
